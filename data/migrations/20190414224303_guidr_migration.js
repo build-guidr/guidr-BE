@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
 			tbl.string('password').notNullable();
 		})
 		.createTable('trip', tbl => {
-			tbl.increments('');
+			tbl.increments();
 			tbl
 				.integer('user_id')
 				.unsigned()
@@ -26,9 +26,27 @@ exports.up = function(knex, Promise) {
 			tbl.text('description');
 			tbl.boolean('professional').defaultTo(false);
 			tbl.string('date', 128);
+		})
+		.createTable('profiles', tbl => {
+			tbl
+				.increments()
+				.notNullable();
+			tbl
+				.integer('user_id')
+				.unsigned()
+				.notNullable()
+				.references('id')
+				.inTable('users');
+			tbl.string('years_of_exp', 128);
+			tbl.string('age', 128);
+			tbl.text('profile_text');
+			tbl.text('certs');
 		});
 };
 
 exports.down = function(knex, Promise) {
-	return knex.schema.dropTableIfExists('users').dropTableIfExists('trip');
+	return knex.schema
+	.dropTableIfExists('profiles')
+	.dropTableIfExists('trip')
+	.dropTableIfExists('users');
 };
