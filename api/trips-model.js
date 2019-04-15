@@ -3,9 +3,11 @@ const db = require('../data/dbConfig');
 
 module.exports = {
 	add,
+	remove,
 	find,
-	findBy,
-	findById
+	findById,
+	findByUser,
+	update
 };
 
 async function add(trip) {
@@ -13,16 +15,24 @@ async function add(trip) {
 	return findById(id);
 }
 
+function remove(id) {
+	return db('trip').where({id}).delete();
+}
+
 function find() {
 	return db('trip');
 }
 
-function findBy(filter) {
-	return db('trip').where(filter);
+function findByUser(user_id) {
+	return db('trip').where({user_id});
 }
 
 function findById(id) {
 	return db('trip')
 		.where({ id })
 		.first();
+}
+
+function update(trip) {
+	return db('trip').where({id:trip.id}).update(trip);
 }
