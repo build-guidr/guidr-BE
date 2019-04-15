@@ -9,12 +9,12 @@ exports.seed = function(knex, Promise) {
 					id: 1,
 					user_id: '1',
 					adventure_type: 'a lot of things',
-					title: 'Good trip',
+					date: 'Apr 15 2018',
+					description: 'an exciting adventure of fun stuff, and things also!',
 					duration: '5 days',
-					description:
-						'bhla bhla bhla bhla bhla bhlabhlabhla  bhla bhla bhla bhla bhla',
+					location: 'Yosemite National Park',
 					professional: true,
-					date: 'Apr 15 2018'
+					title: 'Yosemite Sam',
 				}
 			]);
 		});
