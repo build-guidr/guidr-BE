@@ -4,7 +4,8 @@ module.exports = {
 	add,
 	find,
 	findByUser,
-	findById
+	findById,
+	update
 };
 
 async function add(profile) {
@@ -25,4 +26,13 @@ function findById(id) {
 	return db('user_profiles')
 		.where({ id })
 		.first();
+}
+
+async function update(profile) {
+	const updated = await db('user_profiles').where({user_id:profile.user_id}).update(profile);
+	if (updated) {
+		return findById(profile.user_id);
+	} else {
+		return 0;
+	}
 }

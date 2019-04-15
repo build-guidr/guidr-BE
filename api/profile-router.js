@@ -21,6 +21,24 @@ router.get('/', (req, res) => {
 		.catch(err => res.send(err));
 });
 
+router.put('/:id', async (req, res) => {
+	try {
+		const updateProfile = await Profile.update(req.body);
+		if (updateProfile) {
+			res.status(200).json(updateProfile);
+		} else {
+			res.status(404).json({error: 'Profile id not found'});
+		}
+	} catch (error) {
+		res
+			.status(500)
+			.json({
+				error:
+					'An error occuried while trying to access the project from the database.'
+			});
+	}
+});
+
 router.get('/:id', async (req, res) => {
 	try {
 		const userProfile = await Profile.findByUser(req.params.id);
