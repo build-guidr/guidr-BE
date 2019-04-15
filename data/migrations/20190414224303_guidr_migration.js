@@ -12,13 +12,17 @@ exports.up = function(knex, Promise) {
 			tbl.string('password').notNullable();
 		})
 		.createTable('trip', tbl => {
-			tbl.increments();
+			tbl.increments()
+				.primary()
+				.notNullable();
 			tbl
 				.integer('user_id')
 				.unsigned()
 				.notNullable()
 				.references('id')
-				.inTable('users');
+				.inTable('users')
+				.onDelete('CASCADE')
+				.onUpdate('CASCADE');
 			tbl.string('adventure_type', 128);
 			tbl.string('date', 128);
 			tbl.text('description');
@@ -26,15 +30,22 @@ exports.up = function(knex, Promise) {
 			tbl.string('location', 128);
 			tbl.boolean('professional').defaultTo(false);
 			tbl.string('title', 128);
+
 		})
 		.createTable('user_profiles', tbl => {
-			tbl.increments().notNullable();
+			tbl
+				.increments()
+				.primary()
+				.notNullable();
 			tbl
 				.integer('user_id')
 				.unsigned()
 				.notNullable()
+				.unique()
 				.references('id')
-				.inTable('users');
+				.inTable('users')
+				.onDelete('CASCADE')
+				.onUpdate('CASCADE');
 			tbl.string('age', 128);
 			tbl.text('certs');
 			tbl.text('profile_text');

@@ -4,8 +4,8 @@ const db = require('../data/dbConfig');
 module.exports = {
 	add,
 	find,
-	findBy,
-	findById
+	findById,
+	findByUser
 };
 
 async function add(trip) {
@@ -17,8 +17,8 @@ function find() {
 	return db('trip');
 }
 
-function findBy(filter) {
-	return db('trip').where(filter);
+function findByUser(user_id) {
+	return db('trip').where({user_id});
 }
 
 function findById(id) {

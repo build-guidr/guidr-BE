@@ -39,19 +39,12 @@ router.post('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
 	try {
-		const users = await db('users')
-			.innerJoin('trip', {'trip.id': 'users.id'})
-			.select('trip.*')
-			.where({'users.id': req.params.id});
-		const trip = await db('trip').where('id', req.params.id);
-		proj
-			? res.status(200).json({
-					...trip[0],
-					users: users
-			  })
-			: res
-					.status(404)
-					.json({ errorMessage: 'A project with that ID does not exist.' });
+		const userTrips = await Trips.findByUser(req.params.id);
+		if (userTrips.length > 0) {
+			res.status(200).json(userTrips);
+		} else {
+			res.status(404).json({error: 'user id not found'});
+		}
 	} catch (error) {
 		res
 			.status(500)
