@@ -2,30 +2,33 @@ const router = require('express').Router();
 
 const Trips = require('./trips-model.js');
 
-router.get('/', (req, res) => {
-	Trips.find()
-		.then(trips => {
-			res.json(trips);
-		})
-		.catch(err => res.send(err));
+router.get('/', async (req, res) => {
+	try {
+		const allTrips = await Trips.find();
+		res.status(200).json(allTrips);
+	}
+	catch(err) {
+		res.status(500).json(err);
+	}
+
 });
 
 //ADD /:id that gets trips for logged in user id
 // inner join users & trips
 
 router.post('/', async (req, res) => {
-	const {
-		adventure_type,
-		date,
-		description,
-		duration,
-		location,
-		professional,
-		title
-	} = req.body;
-	req.body = { ...req.body };
+	// const {
+	// 	adventure_type,
+	// 	date,
+	// 	description,
+	// 	duration,
+	// 	location,
+	// 	professional,
+	// 	title
+	// } = req.body;
+	// req.body = { ...req.body };
 	try {
-		const trip = await db('trip').insert(req.body);
+		const trip = await Trips.add(req.body);
 		res.status(201).json(trip);
 	} catch (error) {
 		res
@@ -37,9 +40,9 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
 	try {
 		const users = await db('users')
-			.innerJoin('trip', 'trip.id', 'users.id')
+			.innerJoin('trip', {'trip.id': 'users.id'})
 			.select('trip.*')
-			.where('users.id', req.params.id);
+			.where({'users.id': req.params.id});
 		const trip = await db('trip').where('id', req.params.id);
 		proj
 			? res.status(200).json({
