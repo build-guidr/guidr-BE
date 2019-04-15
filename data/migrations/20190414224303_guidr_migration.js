@@ -28,9 +28,7 @@ exports.up = function(knex, Promise) {
 			tbl.string('title', 128);
 		})
 		.createTable('user_profiles', tbl => {
-			tbl
-				.increments()
-				.notNullable();
+			tbl.increments().notNullable();
 			tbl
 				.integer('user_id')
 				.unsigned()
@@ -46,7 +44,7 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
 	return knex.schema
-	.dropTableIfExists('profiles')
-	.dropTableIfExists('trip')
-	.dropTableIfExists('users');
+		.dropTableIfExists('user_profiles')
+		.dropTableIfExists('trip')
+		.dropTableIfExists('users');
 };
