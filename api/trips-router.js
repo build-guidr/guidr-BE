@@ -2,20 +2,6 @@ const router = require('express').Router();
 
 const Trips = require('./trips-model.js');
 
-router.get('/', async (req, res) => {
-	try {
-		const allTrips = await Trips.find();
-		res.status(200).json(allTrips);
-	}
-	catch(err) {
-		res.status(500).json(err);
-	}
-
-});
-
-//ADD /:id that gets trips for logged in user id
-// inner join users & trips
-
 router.post('/', async (req, res) => {
 	// const {
 	// 	adventure_type,
@@ -34,6 +20,16 @@ router.post('/', async (req, res) => {
 		res
 			.status(500)
 			.json({ error: 'An error trying to add the trip to the database.' });
+	}
+});
+
+router.get('/', async (req, res) => {
+	try {
+		const allTrips = await Trips.find();
+		res.status(200).json(allTrips);
+	}
+	catch(err) {
+		res.status(500).json(err);
 	}
 });
 

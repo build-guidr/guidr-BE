@@ -17,7 +17,6 @@ function find() {
 	return db('user_profiles');
 }
 
-
 function findByUser(user_id) {
 	return db('user_profiles').where({user_id}).first();
 }
