@@ -11,4 +11,7 @@ router.get('/', (req, res) => {
 		.catch(err => res.send(err));
 });
 
+//ADD /:id that gets trips for logged in user id
+// inner join users & trips
+
 module.exports = router;
