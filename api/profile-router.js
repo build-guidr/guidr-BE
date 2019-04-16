@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const Profile = require('./profile-model.js');
 
+// restricted route /api/profile
 router.post('/', async (req, res) => {
 	try {
 		const profile = await Profile.add(req.body);
