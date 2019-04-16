@@ -48,6 +48,7 @@ Server will return
 ### Display user profile
 #### GET /api/profile/:id
 Example: To see user1 >> POST /api/profile/1
+
 Server will return
 ```
 {
@@ -65,6 +66,7 @@ Server will return
 ### Edit user profile
 #### PUT /api/profile/:id
 Example: To edit user1 >> POST /api/profile/1
+
 Client must send
 ```
 {
@@ -119,6 +121,7 @@ Server will return
 ### Delete user account
 #### DELETE /api/users/:id
 Example: To delete user1 >> DELETE /api/users/1
+
 Server will return status 204 if successful
 
 ## TRIPS
@@ -145,6 +148,7 @@ Server will return status 201 if successful
 ### Display all trips by created by user_id
 #### GET /api/trips/:id
 Example: To see trips created by user2 >> GET /api/trips/2
+
 Server will return
 ```
 [
@@ -168,6 +172,7 @@ Server will return
 ### Edit trip information
 #### PUT /api/trips/:id
 Example: To edit trip1 >> PUT /api/trips/1
+
 Client must send
 ```
 {
@@ -187,4 +192,5 @@ Client must send
 ### Delete trip
 #### DELETE /api/trips/:id
 Example: To delete trip1 >> DELETE /api/trips/1
+
 Server will return status 204 if successful
