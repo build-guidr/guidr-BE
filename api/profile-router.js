@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const Profile = require('./profile-model.js');
 
+// restricted route /api/profile
 router.post('/', async (req, res) => {
 	try {
 		const profile = await Profile.add(req.body);
@@ -13,12 +14,13 @@ router.post('/', async (req, res) => {
 	}
 });
 
-router.get('/', (req, res) => {
-	Profile.find()
-		.then(profile => {
-			res.json(profile);
-		})
-		.catch(err => res.send(err));
+router.get('/', async (req, res) => {
+	try {
+		const profiles = await Profile.find();
+		res.status(200).json(profiles);
+	} catch (err) {
+		res.status(500).json(err);
+	}
 });
 
 router.get('/:id', async (req, res) => {
@@ -27,14 +29,11 @@ router.get('/:id', async (req, res) => {
 		if (userProfile) {
 			res.status(200).json(userProfile);
 		} else {
-			res.status(404).json({error: 'user id not found'});
+			res.status(404).json({ error: 'user id not found' });
 		}
 	} catch (error) {
-		res
-			.status(500)
-			.json({
-				error:
-					'An error occuried while trying to access the project from the database.'
+		res.status(500).json({
+			error: 'An error occuried while trying to access the profile.'
 		});
 	}
 });
@@ -45,15 +44,12 @@ router.put('/:id', async (req, res) => {
 		if (updateProfile) {
 			res.status(200).json(updateProfile);
 		} else {
-			res.status(404).json({error: 'Profile id not found'});
+			res.status(404).json({ error: 'user id not found' });
 		}
 	} catch (error) {
-		res
-			.status(500)
-			.json({
-				error:
-					'An error occuried while trying to access the project from the database.'
-			});
+		res.status(500).json({
+			error: 'An error occuried while trying to access the profile.'
+		});
 	}
 });
 

@@ -4,7 +4,6 @@ module.exports = {
 	add,
 	find,
 	findByUser,
-	findById,
 	update
 };
 
@@ -18,17 +17,15 @@ function find() {
 }
 
 function findByUser(user_id) {
-	return db('user_profiles').where({user_id}).first();
-}
-
-function findById(id) {
 	return db('user_profiles')
-		.where({ id })
+		.where({ user_id })
 		.first();
 }
 
 async function update(profile) {
-	const updated = await db('user_profiles').where({user_id:profile.user_id}).update(profile);
+	const updated = await db('user_profiles')
+		.where({ user_id: profile.user_id })
+		.update(profile);
 	if (updated) {
 		return findById(profile.user_id);
 	} else {

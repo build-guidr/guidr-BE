@@ -31,7 +31,7 @@ router.post('/login', (req, res) => {
 				const token = generateToken(user);
 				res.status(200).json({
 					message: `Welcome ${user.username}!`,
-					password: token
+					token: token
 				});
 			} else {
 				res.status(401).json({ message: 'Invalid Credentials' });
@@ -54,21 +54,5 @@ function generateToken(user) {
 
 	return jwt.sign(payload, secret, options);
 }
-
-// logout enpoint /logout
-
-router.get('/logout', (req, res) => {
-	if (req.session) {
-		req.session.destroy(err => {
-			if (err) {
-				res.status(500).json({ message: 'automatic logout' });
-			} else {
-				res.status(200).json({ message: 'bye, thanks' });
-			}
-		});
-	} else {
-		res.status(200).json({ message: 'bye, thanks' });
-	}
-});
 
 module.exports = router;
