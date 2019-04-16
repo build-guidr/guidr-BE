@@ -70,7 +70,6 @@ Example: To edit user1 >> POST /api/profile/1
 Client must send
 ```
 {
-  "id": 1, // REQUIRED
   "user_id": 2, // REQUIRED
   "first_name": "Tony",
   "last_name": "Stark",
@@ -131,7 +130,6 @@ Server will return status 204 if successful
 Client must send
 ```
 {
-    "id": 1, // REQUIRED
     "user_id": 2, // REQUIRED
     "adventure_type": "a lot of things",
     "date": "Apr 15 2018",
@@ -176,7 +174,6 @@ Example: To edit trip1 >> PUT /api/trips/1
 Client must send
 ```
 {
-    "id": 1, // REQUIRED
     "user_id": 2, // REQUIRED
     "adventure_type": "a lot of things",
     "date": "Apr 15 2018",
