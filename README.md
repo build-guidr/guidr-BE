@@ -1,21 +1,14 @@
 # Guidr => Backend Architects
-
 ## Julian Moreno
-
 ## Ian Belknap
 
 ### BASE URL
-
 #### https://ls-guidr.herokuapp.com/
 
-#SIGN UP / LOG IN
-
+# SIGN UP / LOG IN
 ### Sign Up
-
 #### POST /api/auth/register
-
 Client must send
-
 ```
 {
     "username":"new user", // REQUIRED
@@ -24,7 +17,6 @@ Client must send
 ```
 
 Server will return
-
 ```
 {
     "id":"3", // REQUIRED
@@ -33,11 +25,8 @@ Server will return
 ```
 
 ### Login
-
 #### POST /api/auth/login
-
 Clint must send
-
 ```
 {
     "username":"new user", // REQUIRED
@@ -46,7 +35,6 @@ Clint must send
 ```
 
 Server will return
-
 ```
 {
     "message":"Welcome username",
@@ -55,15 +43,12 @@ Server will return
 ```
 
 # RESTRICTED ROUTES
-
 ## USER INFORMATION
 
 ### Display user profile
-
 #### GET /api/profile/:id
-
-Example: To see user1 >> POST /api/profile/1 Server will return
-
+Example: To see user1 >> POST /api/profile/1
+Server will return
 ```
 {
   "id": 1,
@@ -78,11 +63,9 @@ Example: To see user1 >> POST /api/profile/1 Server will return
 ```
 
 ### Edit user profile
-
 #### PUT /api/profile/:id
-
-Example: To edit user1 >> POST /api/profile/1 Client must send
-
+Example: To edit user1 >> POST /api/profile/1
+Client must send
 ```
 {
   "id": 1, // REQUIRED
@@ -97,11 +80,8 @@ Example: To edit user1 >> POST /api/profile/1 Client must send
 ```
 
 ### Display ALL user profiles
-
 #### GET /api/profile
-
 Server will return
-
 ```
 [
   {
@@ -121,11 +101,8 @@ Server will return
 ```
 
 ### Display all users
-
 #### GET /api/users
-
 Server will return
-
 ```
 [
   {
@@ -140,20 +117,35 @@ Server will return
 ```
 
 ### Delete user account
-
-#### POST /api/users/:id
-
-Example: To delete user1 >> POST /api/users/1 Server will return status 204 if
-successful
+#### DELETE /api/users/:id
+Example: To delete user1 >> DELETE /api/users/1
+Server will return status 204 if successful
 
 ## TRIPS
 
+### Create a new trip
+#### POST /api/trips/
+Client must send
+```
+{
+    "id": 1, // REQUIRED
+    "user_id": 2, // REQUIRED
+    "adventure_type": "a lot of things",
+    "date": "Apr 15 2018",
+    "description": "...",
+    "duration": "5 days",
+    "location": "Yosemite National Park",
+    "professional": 1,
+    "title": "Yosemite Sam"
+  },
+}
+```
+Server will return status 201 if successful
+
 ### Display all trips by created by user_id
-
 #### GET /api/trips/:id
-
-Example: To see trips created by user2 >> POST /api/trips/2 Server will return
-
+Example: To see trips created by user2 >> GET /api/trips/2
+Server will return
 ```
 [
   {
@@ -174,11 +166,9 @@ Example: To see trips created by user2 >> POST /api/trips/2 Server will return
 ```
 
 ### Edit trip information
-
 #### PUT /api/trips/:id
-
-Example: To edit trip1 >> POST /api/trips/1 Client must send
-
+Example: To edit trip1 >> PUT /api/trips/1
+Client must send
 ```
 {
     "id": 1, // REQUIRED
@@ -194,15 +184,7 @@ Example: To edit trip1 >> POST /api/trips/1 Client must send
 }
 ```
 
-Server will return
-
-```
-{edits}
-```
-
 ### Delete trip
-
-#### POST /api/trips/:id
-
-Example: To delete trip1 >> POST /api/trips/1 Server will return status 204 if
-successful
+#### DELETE /api/trips/:id
+Example: To delete trip1 >> DELETE /api/trips/1
+Server will return status 204 if successful
