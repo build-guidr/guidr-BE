@@ -65,31 +65,35 @@ Server will return
 Example: To see user1 >> POST /api/profile/1 Server will return
 
 ```
-  {
-    "id": 1,
-    "user_id": 1,
-    "age": "28",
-    "certs": "Alpine Mountaineer, XBOX 360, Uphill Gardening",
-    "profile_text": "loves to xbox on mountaintops, will help you change your mind",
-    "years_of_exp": "28"
-  },
+{
+  "id": 1,
+  "user_id": 2,
+  "first_name": "Tony",
+  "last_name": "Stark",
+  "age": "53",
+  "certs": "Alpine Mountaineer, XBOX 360, Uphill Gardening",
+  "profile_text": "loves to xbox on mountaintops, will help you change your mind",
+  "years_of_exp": "40"
+}
 ```
 
 ### Edit user profile
 
 #### PUT /api/profile/:id
 
-Example: To edit user1 >> POST /api/profile/1 Server will return
+Example: To edit user1 >> POST /api/profile/1 Client must send
 
 ```
-  {
-    "id": 1,
-    "user_id": 1,
-    "age": "28",
-    "certs": "XYZ ABC LOL",
-    "profile_text": "happy camper",
-    "years_of_exp": "28"
-  },
+{
+  "id": 1, // REQUIRED
+  "user_id": 2, // REQUIRED
+  "first_name": "Tony",
+  "last_name": "Stark",
+  "age": "53",
+  "certs": "Alpine Mountaineer, XBOX 360, Uphill Gardening",
+  "profile_text": "loves to xbox on mountaintops, will help you change your mind",
+  "years_of_exp": "40"
+}
 ```
 
 ### Display ALL user profiles
@@ -102,20 +106,17 @@ Server will return
 [
   {
     "id": 1,
-    "user_id": 1,
+    "user_id": 2,
+      "first_name": "Tony",
+  "last_name": "Stark",
     "age": "28",
     "certs": "Alpine Mountaineer, XBOX 360, Uphill Gardening",
     "profile_text": "loves to xbox on mountaintops, will help you change your mind",
     "years_of_exp": "28"
   },
-  {
-    "id": 2,
-    "user_id": 2,
-    "age": "12",
-    "certs": "N/A",
-    "profile_text": "new boots",
-    "years_of_exp": "0"
-  }
+  {...},
+  {...},
+  {...}
 ]
 ```
 
