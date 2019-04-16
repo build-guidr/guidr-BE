@@ -12,7 +12,8 @@ exports.up = function(knex, Promise) {
 			tbl.string('password').notNullable();
 		})
 		.createTable('trip', tbl => {
-			tbl.increments()
+			tbl
+				.increments()
 				.primary()
 				.notNullable();
 			tbl
@@ -30,7 +31,6 @@ exports.up = function(knex, Promise) {
 			tbl.string('location', 128);
 			tbl.boolean('professional').defaultTo(false);
 			tbl.string('title', 128);
-
 		})
 		.createTable('user_profiles', tbl => {
 			tbl
@@ -46,6 +46,8 @@ exports.up = function(knex, Promise) {
 				.inTable('users')
 				.onDelete('CASCADE')
 				.onUpdate('CASCADE');
+			tbl.string('first_name', 128);
+			tbl.string('last_name', 128);
 			tbl.string('age', 128);
 			tbl.text('certs');
 			tbl.text('profile_text');
