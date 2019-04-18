@@ -19,8 +19,8 @@ Client must send
 Server will return
 ```
 {
-    "id":"3", // REQUIRED
-    "username":"new user"  // REQUIRED
+    "id":"3",
+    "username":"new user"
 }
 ```
 
@@ -38,6 +38,7 @@ Server will return
 ```
 {
     "message":"Welcome username",
+    "id":"3"
     "token":"hashed auth token"
 }
 ```
@@ -88,8 +89,8 @@ Server will return
   {
     "id": 1,
     "user_id": 2,
-      "first_name": "Tony",
-  "last_name": "Stark",
+    "first_name": "Tony",
+    "last_name": "Stark",
     "age": "28",
     "certs": "Alpine Mountaineer, XBOX 360, Uphill Gardening",
     "profile_text": "loves to xbox on mountaintops, will help you change your mind",
