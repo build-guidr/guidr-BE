@@ -11,10 +11,7 @@ module.exports = {
 };
 
 async function add(trip) {
-	const [id] = await db('trip').insert(trip);
-	return db('trip')
-		.where({ id })
-		.first();
+	return db('trip').insert(trip).returning('*');
 }
 
 async function remove(id) {
