@@ -5,12 +5,7 @@ exports.seed = function(knex, Promise) {
 	for (let i=0;i<tripCount;i++) {
 		fakeTrips.push(createFakeTrip());
 	}
-
-	return knex('trip')
-		.del()
-		.then(function() {
-			return knex('trip').insert(fakeTrips);
-		});
+	return knex('trip').insert(fakeTrips);
 };
 
 const faker = require('faker');
