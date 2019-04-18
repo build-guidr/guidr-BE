@@ -5,12 +5,7 @@ exports.seed = function(knex, Promise) {
 		let user_id = i+1;
 		fakeProfiles.push(createFakeProfile(user_id));
 	}
-
-	return knex('user_profiles')
-		.del()
-		.then(function() {
-			return knex('user_profiles').insert(fakeProfiles);
-		});
+	return knex('user_profiles').insert(fakeProfiles);
 };
 
 const faker = require('faker');

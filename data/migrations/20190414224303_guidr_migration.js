@@ -1,21 +1,14 @@
 exports.up = function(knex, Promise) {
 	return knex.schema
 		.createTable('users', tbl => {
-			tbl
-				.increments()
-				.primary()
-				.notNullable();
-			tbl
-				.string('username', 128)
+			tbl.increments();
+			tbl.string('username', 128)
 				.notNullable()
 				.unique();
 			tbl.string('password').notNullable();
 		})
 		.createTable('trip', tbl => {
-			tbl
-				.increments()
-				.primary()
-				.notNullable();
+			tbl.increments();
 			tbl
 				.integer('user_id')
 				.unsigned()
@@ -33,10 +26,7 @@ exports.up = function(knex, Promise) {
 			tbl.string('title', 128);
 		})
 		.createTable('user_profiles', tbl => {
-			tbl
-				.increments()
-				.primary()
-				.notNullable();
+			tbl.increments();
 			tbl
 				.integer('user_id')
 				.unsigned()
@@ -57,7 +47,7 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
 	return knex.schema
+		.dropTableIfExists('users')
 		.dropTableIfExists('user_profiles')
-		.dropTableIfExists('trip')
-		.dropTableIfExists('users');
+		.dropTableIfExists('trip');
 };
