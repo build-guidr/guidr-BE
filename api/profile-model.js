@@ -8,8 +8,7 @@ module.exports = {
 };
 
 async function add(profile) {
-	const [id] = await db('user_profiles').insert(profile);
-	return findById(id);
+	return db('user_profiles').insert(profile).returning('*');
 }
 
 function find() {
