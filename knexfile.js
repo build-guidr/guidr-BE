@@ -39,6 +39,23 @@ module.exports = {
 		}
 	},
 
+	testing: {
+		client: 'pg',
+		// connection: 'postgres://localhost:5432/<testing>',
+		connection: {
+			database: 'testing',
+			user: 'test',
+			password: 'test'
+		},
+		useNullAsDefault: true,
+		migrations: {
+			directory: './data/migrations'
+		},
+		seeds: {
+			directory: './data/seeds'
+		}
+	  },
+
 	production: {
 		client: 'pg',
 		connection: productionDbConnection,
