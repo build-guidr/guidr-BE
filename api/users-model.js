@@ -9,7 +9,11 @@ module.exports = {
 };
 
 async function add(user) {
-	return db('users').insert(user).returning('id','username');
+	const [id] = await db('users').insert(user).returning('id');
+	return db('users')
+		.select('id', 'username')
+		.where({ id })
+		.first();
 }
 
 async function remove(id) {
