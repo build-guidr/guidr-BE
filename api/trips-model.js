@@ -15,24 +15,24 @@ async function add(trip) {
 	return findById(id);
 }
 
-function remove(id) {
+async function remove(id) {
 	return db('trip').where({id}).delete();
 }
 
-function find() {
+async function find() {
 	return db('trip');
 }
 
-function findByUser(user_id) {
+async function findByUser(user_id) {
 	return db('trip').where({user_id});
 }
 
-function findById(id) {
+async function findById(id) {
 	return db('trip')
 		.where({ id })
 		.first();
 }
 
-function update(trip) {
+async function update(trip) {
 	return db('trip').where({id:trip.id}).update(trip);
 }

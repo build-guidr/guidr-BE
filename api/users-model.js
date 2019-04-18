@@ -13,19 +13,19 @@ async function add(user) {
 	return findById(id);
 }
 
-function remove(id) {
+async function remove(id) {
 	return db('users').where({id}).delete();
 }
 
-function find() {
+async function find() {
 	return db('users').select('id', 'username', 'password');
 }
 
-function findBy(filter) {
-	return db('users').where(filter);
+async function findBy(filter) {
+	return db('users').where(filter).first();
 }
 
-function findById(id) {
+async function findById(id) {
 	return db('users')
 		.select('id', 'username')
 		.where({ id })
